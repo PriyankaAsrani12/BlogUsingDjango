@@ -1,0 +1,84 @@
+{% extends 'basic.html' %} {% block title %} Blogpost {% endblock title%} {% load humanize %} {% load extras %} {% block body %}
+<div class="blog-main container">
+    <h3 class="pb-4 mb-4 font-italic border-bottom my-3 text-center">
+        {{post.title}}
+    </h3>
+
+    <div class="blog-post">
+        <p class="blog-post-meta">{{post.timestamp}} by <a href="/about">{{post.author}} </a>({{post.views}} views)</p>
+
+    </div>
+
+    <p>{{post.content|safe}}</p>
+</div>
+
+<div class="container">
+    <hr>
+    <h5>Comments ({{comments.count}})</h5>
+    {% if user.is_anonymous %}
+    <p>Please login to post comments!</p>
+    {% else %}
+    <form action="/blog/postComment" method="post">{% csrf_token %}
+        <div class="form-group">
+            <label for="comment">Post your comment here</label>
+            <input type="text" class="form-control" id="comment" placeholder="Comment" name="comment">
+        </div>
+        <input type="hidden" name="parentserialNo" value="">
+        <input type="hidden" name="serialNo" value={{post.serialNo}}>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    {% endif %} {% for comment in comments %}
+    <div class="row my-2">
+        <div class="col-md-1">
+            <img src="https://image.shutterstock.com/image-vector/user-icon-trendy-flat-style-260nw-418179865.jpg" class="rounded mx-auto d-block w-100 p-2">
+        </div>
+        <div class="col-md-11">
+            <b>{{comment.user.username}} </b>-
+            <small>{{comment.timestamp|naturaltime}}</small>
+            <div>{{comment.comment}}</div>
+            <div class="reply">
+                {% if user.is_anonymous %}
+                <button class="btn btn-primary btn-sm" type="button" data-toggle="collapse" data-target="#replyBox{{comment.serialNo}}" aria-expanded="false" aria-controls="replyBox{{comment.serialNo}}" disabled>
+                    Login to Reply
+                  </button> {% else %}
+                <button class="btn btn-primary btn-sm" type="button" data-toggle="collapse" data-target="#replyBox{{comment.serialNo}}" aria-expanded="false" aria-controls="replyBox{{comment.serialNo}}">
+                    Reply
+                  </button>
+                <div class="collapse" id="replyBox{{comment.serialNo}}">
+                    <div class="card card-body my-2">
+
+                        <form action="/blog/postComment" method="post">{% csrf_token %}
+                            <div class="form-group">
+                                <label for="replycomment">Post a reply</label>
+                                <input type="text" class="form-control" id="comment" placeholder="Comment" name="comment">
+                                <input type="hidden" name="parentserialNo" value={{comment.serialNo}}>
+                            </div>
+                            <input type="hidden" name="serialNo" value={{post.serialNo}}>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+
+                    </div>
+                </div>
+                {% endif %}
+                <div class="replies my-2">
+                    {% for reply in replyDict|get_val:comment.serialNo%}
+                    <div class="row my-2">
+                        <div class="col-md-1">
+                            <img src="https://image.shutterstock.com/image-vector/user-icon-trendy-flat-style-260nw-418179865.jpg" class="rounded mx-auto d-block w-75 my-3 p-2">
+                        </div>
+                        <div class="col-md-11 my-3">
+                            <b>{{reply.user.username}} </b>- <small>{{reply.timestamp|naturaltime}}</small>
+                            <div>{{reply.comment}}</div>
+                        </div>
+                        <br>
+                    </div>
+
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock body %}

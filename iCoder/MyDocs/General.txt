@@ -1,0 +1,40 @@
+1) Download Python Extension
+2) pip install django
+3) django-admin startproject iCoder
+4) python manage.py startapp blog
+5) Make urls.py in blog folder
+6) git init, git add ., git commit -m "initial commit"
+7) pip install virtualenv
+8) virtualenv myprojectenv
+9) Project from actual python interpreter to virtualenv 
+10) pip install django
+11) Update requirements.txt--->django==3.0.8
+12) Change urls-->old django-->Refer book
+13) Templates ko settings ke dir mei daalo
+14) Django extension installation-->iske description mei "emmet.includeLanguages": {"django-html": "html"}, 
+    yeh hoga isko copy krke vs code ki settings mei daalna hai settings mei user mei jake settings.json mei daalna hai 
+    yeh sb block ke lia kia hai {% block title%}{{% endblock %}
+15) Superuser--->priyanka--->piyuhoneysona
+16) Django messages-->basic.html mei template banao
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+            <strong>Message: </strong> {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    {% endfor %}
+    Phr uske baad views.py mei messages ko import kro-->from django.contrib import messages
+    Messages aase pass kr sakte hai-->messages.success(request,'Welcome to Contact')
+    settings.py mei--->from django.contrib.messages import constants as messages
+    MESSAGE_TAGS={
+        messages.ERROR='danger'
+    }
+    aase islia kia kyuki messages.success mei tag success hi aata hai but messages.error mei tag error aata hai isko change krne ke lia danger mei aase kia
+17) __icontains in django
+18) Video 87--->User authentication
+19) Last ke videos dekh lena ek baar
+20) Public attack se bachane ke lia django safe tag laga deta hai taki koi b script tag lagake change na kr paye-->video no 99
+    html safe django
+    escape
+    safe filter

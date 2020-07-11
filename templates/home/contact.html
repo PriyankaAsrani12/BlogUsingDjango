@@ -1,0 +1,20 @@
+{% extends 'basic.html' %} {% block title %}Contact{% endblock title %} {% block contactactive%}active{% endblock contactactive %} {% block css %} .center_div{ margin: 0 auto; width: 60%; } {% endblock %} {% block body %}
+<div class="container center_div">
+    <h3 class="text-center my-3">Contact Us</h3>
+    <hr>
+
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <form action="/contact" method="post">{% csrf_token %}
+                <input class="form-control" name="name" id="name" placeholder="Name" required /><br />
+                <input class="form-control" name="phone" id="phone" placeholder="Phone" required/><br />
+                <input class="form-control" name="email" id="email" placeholder="E-mail" required/><br />
+                <input class="form-control" name="subject" id="subject" placeholder="Subject" required/><br />
+                <textarea class="form-control" name="message" placeholder="Message" id="message" style="height:150px;"></textarea><br />
+                <input class="btn btn-primary" type="submit" value="Send" />
+            </form>
+        </div>
+    </div>
+
+</div>
+{% endblock body %}
