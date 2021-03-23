@@ -1,1 +1,11 @@
-{% extends 'index.html' %} {% block title %} About {% endblock title%} {% block aboutactive %}active{% endblock aboutactive %} {% block body %}About{% endblock body %}
+{% extends 'index.html' %} {% block title %} About {% endblock title%} {% block aboutactive %}active{% endblock aboutactive %} {% block body %}
+<div class="container my-3">
+    <div class="jumbotron">
+        <h1 class="display-4">Welcome to Blogsite!</h1>
+        <p class="lead">This is a simple blogsite where you can join many bloggers.</p>
+        <hr class="my-4">
+        <p>You sharing your expertise, breaking news, or whatever’s on your mind, you’re in good company of Blogger.</p>
+        <a class="btn btn-primary btn-lg" href="/blog" role="button">Read Blogs</a>
+    </div>
+</div>
+{% endblock body %}

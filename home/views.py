@@ -65,6 +65,7 @@ def handleSignup(request):
         myuser=User.objects.create_user(username,email,password1)
         myuser.first_name=firstname
         myuser.last_name=lastname
+        myuser.is_staff=True
         myuser.save()
         messages.success(request,"Your account has been successfully created")
         return redirect('/')
