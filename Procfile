@@ -1,1 +1,1 @@
-web: waitress-serve --listen=*:8000 iCoder.wsgi:application
+web: gunicorn iCoder.wsgi
