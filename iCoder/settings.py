@@ -24,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '5s^cj(pt%f#$+17fwa@_p&yzi+#&lqet9rx58ji*6z@kpw!19t'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['murmuring-ravine-21909.herokuapp.com/','127.0.0.1']
 
