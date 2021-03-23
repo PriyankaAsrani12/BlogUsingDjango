@@ -57,9 +57,6 @@ def handleSignup(request):
         if len(username)>20:
             messages.error(request,"Username must be under 20 characters")
             return redirect('/')
-        if not username.alnum():
-            messages.error(request,"Username must be only alphabets and numbers")
-            return redirect('/')
         if password1!=password2:
             messages.error(request,"Passwords do not match")
             return redirect('/')
