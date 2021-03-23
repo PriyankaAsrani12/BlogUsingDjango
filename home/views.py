@@ -7,7 +7,7 @@ from django.contrib.auth import authenticate, login, logout
 from blog.models import Post
 # Create your views here.
 def home(request):
-    return render(request,'home/home.html')
+    return render(request,'home/index.html')
 
 def about(request):
     return render(request,'home/about.html')
